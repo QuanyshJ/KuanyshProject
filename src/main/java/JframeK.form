@@ -37,6 +37,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -235,6 +240,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x421;&#x442;&#x430;&#x442;&#x443;&#x441; &#x43c;&#x43e;&#x438;&#x445; &#x437;&#x430;&#x44f;&#x432;&#x43a;&#x43e;&#x43a;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>

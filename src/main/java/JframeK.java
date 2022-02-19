@@ -47,6 +47,8 @@ public class JframeK extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel1.setText("Форма Заявки");
 
@@ -88,6 +90,11 @@ public class JframeK extends javax.swing.JFrame {
         });
 
         jButton4.setText("Статус моих заявкок");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Нужна помощь");
 
@@ -212,6 +219,13 @@ public class JframeK extends javax.swing.JFrame {
                  jTextField4.setText("");
                  jTextArea2.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+         Data create = new  Data(); //объект другого окна
+         create.show(); // открываем это окно . можно и так ( create.setvisible(true); )
+         this.hide(); // закрываем текущее окно . можно и так ( create.setvisible(false); )
+    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
