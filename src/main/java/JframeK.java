@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,17 +10,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 /**
  *
  * @author asus
  */
 public class JframeK extends javax.swing.JFrame {
+
     Scanner sc=new Scanner(System.in);
-    /**
-     * Creates new form JframeK
-     */
     
-          
+    
+    
     public JframeK() {
         initComponents();
     }
@@ -48,8 +49,8 @@ public class JframeK extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,9 +110,9 @@ public class JframeK extends javax.swing.JFrame {
 
         jButton5.setText("Нужна помощь");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,15 +146,15 @@ public class JframeK extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 10, Short.MAX_VALUE)))
+                        .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -193,11 +194,9 @@ public class JframeK extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addGap(25, 25, 25)
                         .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                         .addComponent(jButton5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
 
@@ -222,9 +221,7 @@ public class JframeK extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        String name=sc.next();
-        
-        jTextField1.setText(name); // TODO add your handling code here:
+
         
     }//GEN-LAST:event_jTextField1ActionPerformed
 
@@ -233,7 +230,7 @@ public class JframeK extends javax.swing.JFrame {
     jTextField2.setText("");
     jTextField3.setText("");
                  jTextField4.setText("");
-                 jTextArea2.setText("");
+                 jTextArea1.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -244,7 +241,41 @@ public class JframeK extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            //Establish connection
+            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/info", "postgres",
+                    "1111");
+            stmt = con.createStatement();
+
+            PreparedStatement pr = con.prepareStatement("insert into info(mail, sname, name, app, phone) values" +
+                    "(?,?,?,?,?)");
+
+            pr.setString(1, jTextField1.getText());
+            pr.setString(2, jTextField2.getText());
+            pr.setString(3, jTextField3.getText());
+            pr.setString(4, jTextArea1.getText());
+            pr.setString(5, jTextField4.getText());
+
+            pr.executeUpdate();
+
+            ResultSet rs = stmt.executeQuery("select * from info");
+          
+
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                assert stmt != null;
+                stmt.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -273,54 +304,6 @@ public class JframeK extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JframeK.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        Statement stmt=null;
-        Connection con=null;
-        Order o=new Order("one", "hundred", "points", 100);
-        
-        
-        try{
-            Class.forName("org.postgresql.Driver");
-            con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1111");
-            stmt=con.createStatement();
-            PreparedStatement ps=con.prepareStatement("insert into бд(Имя, Фамилия, Заявка, Дата) values" +"(?,?,?,?)");
-            
-            System.out.print("Enter your name: ");
-            String name=o.getName();
-            System.out.println("Enter your second name: ");
-            String sname=o.getSname();
-            System.out.println("Enter your title of order: ");
-            String order=o.getOrder();
-            System.out.println("Enter your phone number: ");
-            int phone=o.getPhone();
-            
-            ps.setString(1, name);
-            ps.setString(2, sname);
-            ps.setString(3, order);
-            ps.setInt(4, phone);
-            
-            ps.executeUpdate();
-            
-            ResultSet rs=stmt.executeQuery("select*from бд");
-            
-            while(rs.next())
-                System.out.println(rs.getString("name")+ " | " + rs.getString("sname") + " | " + rs.getString("order") + " | "+ rs.getInt("phone"));
-            
-            
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        finally{
-            try{
-                assert stmt!=null;
-                stmt.close();
-                con.close();
-            }
-            catch(SQLException e){
-               e.printStackTrace();
-            }
-        }
-        
         //</editor-fold>
 
         /* Create and display the form */
@@ -344,8 +327,8 @@ public class JframeK extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

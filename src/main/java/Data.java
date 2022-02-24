@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -104,7 +107,7 @@ public class Data extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                                               
+
          JframeK create = new  JframeK(); //объект другого окна
          create.show(); // открываем это окно . можно и так ( create.setvisible(true); )
          this.hide(); // закрываем текущее окно . можно и так ( create.setvisible(false); )
